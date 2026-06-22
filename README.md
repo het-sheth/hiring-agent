@@ -21,6 +21,7 @@
 ## Contents
 
 - [Overview](#overview)
+- [Understanding the codebase](#understanding-the-codebase)
 - [Architecture](#architecture)
 - [Installation and Setup](#installation-and-setup)
   - [Prerequisites](#prerequisites)
@@ -39,6 +40,12 @@
 ## Overview
 
 Hiring Agent parses a resume PDF to Markdown, extracts sectioned JSON using a local or hosted LLM, augments the data with GitHub profile and repository signals, then produces an objective evaluation with category scores, evidence, bonus points, and deductions. You can run fully local with Ollama or use Google Gemini.
+
+---
+
+## Understanding the codebase
+
+New here? Run [graphify](https://github.com/safishamsi/graphify) on this repo to build a local knowledge graph - it clusters the modules into communities (PDF extraction, the LLM provider layer, scoring, and so on) so you can see how everything connects before you touch anything. A pre-generated, plain-language overview lives in `graphify-out/GRAPH_REPORT.md` - start there for the architecture, the most-connected files, and a few non-obvious dependencies. The full interactive graph (`graph.html`) is gitignored, so regenerate it locally whenever you want to explore.
 
 ---
 

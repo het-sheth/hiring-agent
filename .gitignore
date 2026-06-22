@@ -226,4 +226,6 @@ __marimo__/
 .streamlit/secrets.toml
 
 # graphify knowledge-graph artifacts (local analysis only)
-graphify-out/
+# Keep the plain-language overview; ignore the heavy generated files.
+graphify-out/*
+!graphify-out/GRAPH_REPORT.md
