@@ -14,6 +14,8 @@
   </a>
 </p>
 
+> **Note:** This is a personal fork adapted from [interviewstreet/hiring-agent](https://github.com/interviewstreet/hiring-agent) by HackerRank (MIT licensed). Upstream changes can be pulled via the `upstream` remote.
+
 ---
 
 ## Contents

@@ -224,3 +224,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# graphify knowledge-graph artifacts (local analysis only)
+graphify-out/
