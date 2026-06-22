@@ -203,12 +203,28 @@ def fetch_repo_contributors(owner: str, repo_name: str) -> list[dict]:
     try:
         api_url = f"https://api.github.com/repos/{owner}/{repo_name}/contributors"
 
-        status_code, contributors_data = _fetch_github_api(api_url)
+        # The contributors endpoint paginates at 30 per page by default, so a
+        # single request undercounts any repo with more than 30 contributors.
+        # Request the max page size and follow pages until a short page signals
+        # the end of the list.
+        per_page = 100
+        page = 1
+        all_contributors: list[dict] = []
 
-        if status_code == 200:
-            return contributors_data
-        else:
-            return []
+        while True:
+            params = {"per_page": per_page, "page": page}
+            status_code, contributors_data = _fetch_github_api(api_url, params=params)
+
+            if status_code != 200 or not isinstance(contributors_data, list):
+                break
+
+            all_contributors.extend(contributors_data)
+
+            if len(contributors_data) < per_page:
+                break
+            page += 1
+
+        return all_contributors
 
     except Exception as e:
         logger.error(f"Error fetching contributors for {owner}/{repo_name}: {e}")
